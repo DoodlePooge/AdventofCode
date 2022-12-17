@@ -28,8 +28,8 @@ def test_determine_play() -> None:
     assert play == 'paper'
 
 def test_traverse_file_pt_one() -> None:
-    assert rounds1 == traverse_file_pt_one("exampleInput.txt")
+    assert rounds1 == traverse_file_pt_one("example_input.txt")
 
 
 def test_traverse_file_pt_two() -> None:
-    assert rounds2 == traverse_file_pt_two("exampleInput.txt")
+    assert rounds2 == traverse_file_pt_two("example_input.txt")
