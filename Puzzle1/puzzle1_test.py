@@ -5,7 +5,7 @@ calories: list[int] = [7000, 8000, 9000]
 
 def test_add_calories_held() -> None:
     sum = add_calories_held(calories)
-    assert True
+    assert sum == 24000
 
 def test_traverse_file() -> None:
     assert elves == traverse_file("exampleInput1.txt")
