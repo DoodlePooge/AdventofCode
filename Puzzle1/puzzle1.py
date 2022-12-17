@@ -12,6 +12,38 @@ def find_max_calories_held(elves: list[int]) -> int:
             maxCals = elf
     return maxCals
 
+def find_top_three_calories_held(elves: list[int]) -> int:
+    mergesort(elves)
+    return add_calories_held(elves[:3])
+
+def mergesort(arr: list[int]):
+    if len(arr) > 1:
+        mid = len(arr) // 2
+        left = arr[:mid]
+        right = arr[mid:]
+        mergesort(left)
+        mergesort(right)
+        i = j = k = 0
+        while i < len(left) and j < len(right):
+            if left[i] > right[j]:
+                arr[k] = left[i]
+                i += 1
+            else:
+                arr[k] = right[j]
+                j += 1
+            k += 1
+ 
+        while i < len(left):
+            arr[k] = left[i]
+            i += 1
+            k += 1
+ 
+        while j < len(right):
+            arr[k] = right[j]
+            j += 1
+            k += 1
+
+
 def traverse_file(fileName: str) -> list[int]:
     file = open(fileName)
     lines = file.readlines()
@@ -30,8 +62,7 @@ def traverse_file(fileName: str) -> list[int]:
     return elves
 
 
-def main() -> None:
+def main():
     print(find_max_calories_held(traverse_file("input1.txt")))
-    return
-
+    print(find_top_three_calories_held(traverse_file("input1.txt")))
 main()
