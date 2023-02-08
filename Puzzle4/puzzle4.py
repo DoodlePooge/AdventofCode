@@ -5,22 +5,17 @@ def is_contained(sec1: str, sec2: str) -> bool:
     return (first[0] <= second[0] and first[1] >= second[1]) or (first[0] >= second[0] and first[1] <= second[1])
 
 def does_overlap(sec1: str, sec2: str) -> bool:
-    first: list[int] = sec1.split('-')
-    second: list[int] = sec2.split('-')
+    first: list[int] = [int(sec1.split('-')[0]), int(sec1.split('-')[1])]
+    second: list[int] = [int(sec2.split('-')[0]), int(sec2.split('-')[1])]
 
-    if first[0] == second[0] or first[0] == second[1] or first[1] == second[0] or first[1] == second[1]:
-        return True
-
-    if first[0] < second[0]:
-        if first[1] >= second[1]:
+    if first[0] > second[0]:
+        if first[0] <= second[1]:
             return True
-        else:
-            return first[1] > second[0]
     else:
-        if first[1] <= second[1]:
+        if first[1] >= second[0]:
             return True
-        else:
-            return first[1] < second[0]
+    
+    return False
 
 
 def total_contained(assignments: list[bool]) -> int:
@@ -54,10 +49,8 @@ def traverse_file_pt_two(fileName: str) -> list[bool]:
 
 def main():
     assignments1 = traverse_file_pt_one('input4.txt')
-    print(assignments1)
     print(total_contained(assignments1))
     assignments2 = traverse_file_pt_two('input4.txt')
-    print(assignments2)
     print(total_contained(assignments2))
 
 main()
